@@ -24,6 +24,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from datetime import datetime, timedelta
+import random
 from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
@@ -40,10 +41,10 @@ def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1):
     timestamp = datetime(2019, 1, 9, 11, 34, 59)
 
     sqlContext = get_or_create_sc("sqlContext")
-    for row in range(864): #86400000
-        x = range(-2,2)
-        y = range(-2,2)
-        z = range(-2,2)
+    for row in range(86400000):
+        x = round(random.uniform(-2,2),8)
+        y = round(random.uniform(-2,2),8)
+        z = round(random.uniform(-2,2),8)
         timestamp = timestamp + timedelta(milliseconds=1)
         localtime = timestamp - timedelta(hours=5)
         sample_data.append((timestamp, localtime, user_id, version, x, y, z))

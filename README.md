@@ -1,5 +1,5 @@
 # CerebralCortex-Random-Data-Generator
-Generate some random data for Cerebral Cortex Demo Purposes
+Generate some random data for Cerebral Cortex Demo Purposes. This script will generate one day worth of sensors data.
 
 ### Dependencies
 * Python 3.7+
