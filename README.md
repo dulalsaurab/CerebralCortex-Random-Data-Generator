@@ -3,7 +3,7 @@ Generate some random data for Cerebral Cortex Demo Purposes. This script will ge
 
 ### Dependencies
 * Python 3.7+
-* cerebralcortex-kernel - 3.2.0
+* cerebralcortex-kernel - 3.3.0
     * ```pip3 install cerebralcortex-kernel```
 
 ### How to run
