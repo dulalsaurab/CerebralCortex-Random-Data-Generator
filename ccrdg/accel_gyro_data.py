@@ -1,4 +1,4 @@
-# Copyright (c) 2019, MD2K Center of Excellence
+# Copyright (c) 2021, MD2K Center of Excellence
 # - Nasir Ali <nasir.ali08@gmail.com>
 # All rights reserved.
 #
@@ -29,7 +29,7 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
-def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1):
+def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1, hours=1, frequency=32):
     """
     Create pyspark dataframe with some sample phone battery data
     Returns:
@@ -41,7 +41,8 @@ def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1):
     timestamp = datetime(2019, 1, 9, 11, 34, 59)
 
     sqlContext = get_or_create_sc("sqlContext")
-    for row in range(86400000):
+    total_hours = (hours*60*60)*frequency
+    for row in range(total_hours):
         x = round(random.uniform(-2,2),8)
         y = round(random.uniform(-2,2),8)
         z = round(random.uniform(-2,2),8)
@@ -68,7 +69,7 @@ def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1):
         DataDescriptor().set_name("z").set_type("float").set_attribute("description", "z-axis")) \
         .add_module(
         ModuleMetadata().set_name("battery").set_version("1.2.4").set_attribute("attribute_key", "attribute_value").set_author(
-            "Nasir Ali", "nasir.ali08@gmail.com"))
+            "Nasir Ali", "software@md2k.org"))
     stream_metadata.is_valid()
 
     ds = DataStream(df, stream_metadata)

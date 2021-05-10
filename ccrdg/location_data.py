@@ -1,4 +1,4 @@
-# Copyright (c) 2019, MD2K Center of Excellence
+# Copyright (c) 2021, MD2K Center of Excellence
 # - Nasir Ali <nasir.ali08@gmail.com>
 # All rights reserved.
 #
@@ -93,7 +93,7 @@ def gen_location_datastream(CC, study_name, user_id, stream_name):
         DataDescriptor().set_name("accuracy").set_type("float").set_attribute("description", "accuracy of gps location")) \
         .add_module(
         ModuleMetadata().set_name("examples.util.data_helper.gen_location_data").set_attribute("attribute_key", "attribute_value").set_author(
-            "Nasir Ali", "nasir.ali08@gmail.com"))
+            "Nasir Ali", "software@md2k.org"))
     stream_metadata.is_valid()
 
     ds = DataStream(data=df, metadata=stream_metadata)
@@ -145,7 +145,7 @@ def gen_semantic_location_datastream(CC, study_name, user_id, stream_name):
         DataDescriptor().set_name("semantic_name").set_type("string").set_attribute("description", "semantic name of the gps co-ordinate")) \
         .add_module(
         ModuleMetadata().set_name("examples.util.data_helper.gen_location_data").set_attribute("attribute_key", "attribute_value").set_author(
-            "Nasir Ali", "nasir.ali08@gmail.com"))
+            "Nasir Ali", "software@md2k.org"))
     stream_metadata.is_valid()
     ds = DataStream(data=df, metadata=stream_metadata)
     CC.save_stream(ds)

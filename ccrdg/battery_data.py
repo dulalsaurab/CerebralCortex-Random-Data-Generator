@@ -1,4 +1,4 @@
-# Copyright (c) 2019, MD2K Center of Excellence
+# Copyright (c) 2021, MD2K Center of Excellence
 # - Nasir Ali <nasir.ali08@gmail.com>
 # All rights reserved.
 #
@@ -28,7 +28,7 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
-def gen_battery_data(CC, study_name, user_id, stream_name, version=1):
+def gen_battery_data(CC, study_name, user_id, stream_name, version=1, hours=1):
     """
     Create pyspark dataframe with some sample phone battery data
     Returns:
@@ -42,7 +42,8 @@ def gen_battery_data(CC, study_name, user_id, stream_name, version=1):
     voltage = 3700
     temperature = 70
     sqlContext = get_or_create_sc("sqlContext")
-    for row in range(86400, 1, -1):
+    total_data = hours*60*60
+    for row in range(total_data, 1, -1):
         sample = float(sample - 0.01)
         timestamp = timestamp + timedelta(0, 1)
         localtime = timestamp - timedelta(hours=5)
@@ -67,7 +68,7 @@ def gen_battery_data(CC, study_name, user_id, stream_name, version=1):
         DataDescriptor().set_name("temperature").set_type("float").set_attribute("description", "current battery temperature")) \
         .add_module(
         ModuleMetadata().set_name("battery").set_version("1.2.4").set_attribute("attribute_key", "attribute_value").set_author(
-            "Nasir Ali", "nasir.ali08@gmail.com"))
+            "Nasir Ali", "software@md2k.com"))
     stream_metadata.is_valid()
 
     ds = DataStream(df, stream_metadata)

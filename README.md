@@ -2,8 +2,8 @@
 Generate some random data for Cerebral Cortex Demo Purposes. This script will generate one day worth of sensors data.
 
 ### Dependencies
-* Python 3.7+
-* cerebralcortex-kernel - 3.3.0
+* Python 3.5, 3.6, 3.7, 3.8
+* cerebralcortex-kernel - 3.3.9
     * ```pip3 install cerebralcortex-kernel```
 
 ### How to run
@@ -22,8 +22,8 @@ data.show()
 ```
 
 ### Available stream names
-* battery--org.md2k.phonesensor--phone
-* location--org.md2k.phonesensor--phone
-* org.md2k.data_analysis.gps_episodes_and_semantic_location
-* accelerometer--org.md2k.phonesensor--phone
-* gyroscope--org.md2k.phonesensor--phone
+* org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--battery--phone
+* org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--location--phone
+* org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--data_analysis--gps_episodes_and_semantic_location
+* org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--accelerometer--phone
+* org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--gyroscope--phone
