@@ -27,3 +27,6 @@ data.show()
 * org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--data_analysis--gps_episodes_and_semantic_location
 * org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--accelerometer--phone
 * org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--gyroscope--phone
+
+### Test is live on Google Colab
+https://colab.research.google.com/drive/1nxQom7FpzTLEblv_uBbtHUD8TaTN48I5?usp=sharing
