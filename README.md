@@ -28,5 +28,5 @@ data.show()
 * org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--accelerometer--phone
 * org.md2k--mguard--00000000-e19c-3956-9db2-5459ccadd40c--gyroscope--phone
 
-### Test is live on Google Colab
+### Google Colab Notebook
 https://colab.research.google.com/drive/1nxQom7FpzTLEblv_uBbtHUD8TaTN48I5?usp=sharing
