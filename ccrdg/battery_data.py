@@ -28,7 +28,7 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
-def gen_battery_data(CC, study_name, user_id, stream_name, version=1, hours=1):
+def gen_battery_data(CC, study_name, user_id, stream_name, version=1, start_time=None, end_time=None):
     """
     Create pyspark dataframe with some sample phone battery data
     Returns:
@@ -37,12 +37,12 @@ def gen_battery_data(CC, study_name, user_id, stream_name, version=1, hours=1):
     """
     column_name = ["timestamp", "localtime", "user" ,"version", "level", "voltage", "temperature"]
     sample_data = []
-    timestamp = datetime(2019, 1, 9, 11, 34, 59)
+    timestamp = start_time
     sample = 100
     voltage = 3700
     temperature = 70
     sqlContext = get_or_create_sc("sqlContext")
-    total_data = hours*60*60
+    total_data = (end_time-start_time).total_seconds()
     for row in range(total_data, 1, -1):
         sample = float(sample - 0.01)
         timestamp = timestamp + timedelta(0, 1)

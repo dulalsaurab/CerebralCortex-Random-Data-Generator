@@ -30,7 +30,7 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
-def gen_location_datastream(CC, study_name, user_id, stream_name):
+def gen_location_datastream(CC, study_name, user_id, stream_name, start_time=None, end_time=None):
     """
     Create pyspark dataframe with some sample gps data (Memphis, TN, lat, long, alt coordinates)
 
@@ -44,7 +44,7 @@ def gen_location_datastream(CC, study_name, user_id, stream_name):
     """
     column_name = ["timestamp", "localtime", "user" ,"version" ,"latitude" ,"longitude" ,"altitude" ,"speed" ,"bearing" ,"accuracy"]
     sample_data = []
-    timestamp = datetime(2019, 9, 1, 11, 34, 59)
+    timestamp = start_time
     sqlContext = get_or_create_sc("sqlContext")
 
     lower_left = [35.079678, -90.074136]
@@ -100,7 +100,7 @@ def gen_location_datastream(CC, study_name, user_id, stream_name):
     CC.save_stream(ds)
 
 
-def gen_semantic_location_datastream(CC, study_name, user_id, stream_name):
+def gen_semantic_location_datastream(CC, study_name, user_id, stream_name, start_time, end_time):
     """
     Create pyspark dataframe with some sample gps data (Memphis, TN, lat, long, alt coordinates)
 
@@ -114,16 +114,16 @@ def gen_semantic_location_datastream(CC, study_name, user_id, stream_name):
     """
     column_name = ["timestamp", "localtime", "user" ,"version" ,"window" ,"semantic_name"]
     sample_data = []
-    timestamp = datetime(2019, 9, 1, 11, 34, 59)
+    timestamp = start_time
     sqlContext = get_or_create_sc("sqlContext")
 
     semantic_locations = ["home", "work", "gym", "shopping-mall"]
 
     for dp in range(12):
         slocation = random.choice(semantic_locations)
-        window = (timestamp, timestamp + timedelta(hours=2))
-        timestamp = timestamp + timedelta(hours=2)
-        localtime = timestamp + timedelta(hours=5)
+        window = (timestamp, timestamp + timedelta(minutes=10))
+        timestamp = timestamp + timedelta(minutes=10)
+        localtime = timestamp + timedelta(minutes=10)
 
         sample_data.append((timestamp, localtime, user_id, 1, window, slocation))
 

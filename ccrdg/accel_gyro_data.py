@@ -29,7 +29,7 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
-def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1, hours=1, frequency=32):
+def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1, frequency=32 , start_time=None, end_time=None):
     """
     Create pyspark dataframe with some sample phone battery data
     Returns:
@@ -38,10 +38,10 @@ def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1, hours=1
     """
     column_name = ["timestamp", "localtime", "user" ,"version", "x", "y", "z"]
     sample_data = []
-    timestamp = datetime(2019, 1, 9, 11, 34, 59)
+    timestamp = start_time
 
     sqlContext = get_or_create_sc("sqlContext")
-    total_hours = (hours*60*60)*frequency
+    total_hours = ((end_time-start_time).total_seconds())*frequency
     for row in range(total_hours):
         x = round(random.uniform(-2,2),8)
         y = round(random.uniform(-2,2),8)
