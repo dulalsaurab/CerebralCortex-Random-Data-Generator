@@ -41,7 +41,7 @@ def gen_accel_gyro_data(CC, study_name, user_id, stream_name, version=1, frequen
     timestamp = start_time
 
     sqlContext = get_or_create_sc("sqlContext")
-    total_hours = ((end_time-start_time).total_seconds())*frequency
+    total_hours = round(((end_time-start_time).total_seconds()))*frequency
     for row in range(total_hours):
         x = round(random.uniform(-2,2),8)
         y = round(random.uniform(-2,2),8)

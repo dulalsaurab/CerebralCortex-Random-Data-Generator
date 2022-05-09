@@ -42,14 +42,15 @@ def gen_battery_data(CC, study_name, user_id, stream_name, version=1, start_time
     voltage = 3700
     temperature = 70
     sqlContext = get_or_create_sc("sqlContext")
-    total_data = (end_time-start_time).total_seconds()
+    total_data = round((end_time-start_time).total_seconds())
     for row in range(total_data, 1, -1):
         sample = float(sample - 0.01)
         timestamp = timestamp + timedelta(0, 1)
         localtime = timestamp - timedelta(hours=5)
         sample_data.append((timestamp, localtime, user_id, version, sample, voltage, temperature))
-    df = sqlContext.createDataFrame(sample_data, column_name)
 
+    df = sqlContext.createDataFrame(sample_data, column_name)
+    df.show(5)
     stream_metadata = Metadata()
     stream_metadata.set_study_name(study_name).set_name(stream_name).set_description("battery sample data stream.") \
         .add_dataDescriptor(

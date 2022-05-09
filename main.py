@@ -21,8 +21,8 @@ def run():
 
     study_name = str(args["study_name"]).strip()
     user_id = str(args["user_id"]).strip()
-    start_time = datetime.strptime(args["end_time"], '%Y-%m-%d %H:%M:%S')
-    end_time = datetime.strptime(args["end_time"], '%Y-%m-%d %H:%M:%S')
+    start_time = datetime.datetime.strptime(args["start_time"], '%Y-%m-%d %H:%M:%S')
+    end_time = datetime.datetime.strptime(args["end_time"], '%Y-%m-%d %H:%M:%S')
 
 
 

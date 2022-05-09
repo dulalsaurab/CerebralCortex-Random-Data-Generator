@@ -7,7 +7,7 @@ Generate some random data for Cerebral Cortex Demo Purposes. This script will ge
     * ```pip3 install cerebralcortex-kernel```
 
 ### How to run
-* ``python3 main.py --user_id 234-123-234-123 --study_name mguard --start_time 2022-05-08 21:08:10 --end_time 2022-05-08 23:18:10``
+* ``python3 main.py --user_id 234-123-234-123 --study_name mguard --start_time "2022-05-08 21:08:10" --end_time "2022-05-08 23:18:10"``
 * By default, random generated data will be stored under home folder, e.g.,``(/Users/ali/cc_data/)``
 
 ### How to read generated data
