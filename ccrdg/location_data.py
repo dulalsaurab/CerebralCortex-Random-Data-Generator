@@ -30,6 +30,9 @@ from cerebralcortex.core.datatypes import DataStream
 from cerebralcortex.core.metadata_manager.stream.metadata import Metadata, DataDescriptor, ModuleMetadata
 from cerebralcortex.core.util.spark_helper import get_or_create_sc
 
+# potato end time not being used in the code so the data that we get exceeds the limit
+# end time not taken into consideration 
+# gps/phone data
 def gen_location_datastream(CC, study_name, user_id, stream_name, start_time=None, end_time=None):
     """
     Create pyspark dataframe with some sample gps data (Memphis, TN, lat, long, alt coordinates)
@@ -63,7 +66,10 @@ def gen_location_datastream(CC, study_name, user_id, stream_name, start_time=Non
             bearing_val = round(random.uniform(0.0,350),6)
             accuracy_val = round(random.uniform(10.0, 30.4),6)
             random_time_delta = randrange(3, 10)
+            #potato adding minutes here in gps data functino
             timestamp = timestamp + timedelta(minutes=random_time_delta)
+            #potato adding 5 hours  here in gps data functino
+
             localtime = timestamp + timedelta(hours=5)
             sample_data.append((timestamp, localtime, user_id, 1, lat_val, long_val, alt_val, speed_val, bearing_val, accuracy_val))
 
