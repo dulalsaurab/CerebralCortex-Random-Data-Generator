@@ -118,7 +118,7 @@ def gen_location_data(CC, study_name, user_id, gps_stream_name, location_stream_
 
     df2 = sqlContext.createDataFrame(semantic_locations_data, semantic_location_columns)
     df2.show(truncate=False)
-    gps_location_metadata2 = gps_coordinates_metadata(study_name=study_name, stream_name=location_stream_name)
+    gps_location_metadata2 = semantic_location_metadata(study_name=study_name, stream_name=location_stream_name)
     ds2 = DataStream(data=df2, metadata=gps_location_metadata2)
     CC.save_stream(ds2)
 
